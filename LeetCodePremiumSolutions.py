@@ -47,6 +47,9 @@ while i < size_1 and j < size_2:
 print("The combined sorted list is : " + str(res))
 
 
+#iven a string num which represents an integer, return true if num is a strobogrammatic number.
+#A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+#method 1
 def isStrobogrammatic(num) -> bool:
     ans = ""
     for m in num:
@@ -66,6 +69,7 @@ def isStrobogrammatic(num) -> bool:
     return ans == num
 print(isStrobogrammatic("789"))
 
+# method 2 using hashmap
 def isStrobogramm(num):
         """
         :type num: str
@@ -74,8 +78,29 @@ def isStrobogramm(num):
         d = {'0': '0', '1': '1', '6': '9', '8': '8', '9': '6'}
         ans = ''
         for n in num:
-            if n not in d:
+            if n  in d:
+                ans += d[n]
+            else:
                 return False
             ans += d[n]
         return ans[::-1] == num
-print(isStrobogramm('789'))
+print(isStrobogramm('111'))
+
+#an in-place algorithm.
+#time complexity : o (n)
+#space complexity : o(1)
+def isStrobogrammatichashmap(num) -> bool:
+
+        rotated_digits = {'0': '0', '1': '1', '8': '8', '6': '9', '9': '6'}
+
+        left = 0
+        right = len(num) - 1
+
+        while left <= right:
+            if num[left] not in rotated_digits \
+                    or num[right] != rotated_digits[num[left]]:
+                return False
+            left += 1
+            right -= 1
+        return True
+print("THE VALUE 111 is = ", isStrobogrammatichashmap("111"))
