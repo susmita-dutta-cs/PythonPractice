@@ -47,9 +47,9 @@ while i < size_1 and j < size_2:
 print("The combined sorted list is : " + str(res))
 
 
-#iven a string num which represents an integer, return true if num is a strobogrammatic number.
-#A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
-#method 1
+# iven a string num which represents an integer, return true if num is a strobogrammatic number.
+# A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+# method 1
 def isStrobogrammatic(num) -> bool:
     ans = ""
     for m in num:
@@ -67,40 +67,76 @@ def isStrobogrammatic(num) -> bool:
             ans = ans + ""
     # print(ans)
     return ans == num
+
+
 print(isStrobogrammatic("789"))
+
 
 # method 2 using hashmap
 def isStrobogramm(num):
-        """
+    """
         :type num: str
         :rtype: bool
         """
-        d = {'0': '0', '1': '1', '6': '9', '8': '8', '9': '6'}
-        ans = ''
-        for n in num:
-            if n  in d:
-                ans += d[n]
-            else:
-                return False
+    d = {'0': '0', '1': '1', '6': '9', '8': '8', '9': '6'}
+    ans = ''
+    for n in num:
+        if n in d:
             ans += d[n]
-        return ans[::-1] == num
+        else:
+            return False
+        ans += d[n]
+    return ans[::-1] == num
+
+
 print(isStrobogramm('111'))
 
-#an in-place algorithm.
-#time complexity : o (n)
-#space complexity : o(1)
+
+# an in-place algorithm.
+# time complexity : o (n)
+# space complexity : o(1)
 def isStrobogrammatichashmap(num) -> bool:
+    rotated_digits = {'0': '0', '1': '1', '8': '8', '6': '9', '9': '6'}
 
-        rotated_digits = {'0': '0', '1': '1', '8': '8', '6': '9', '9': '6'}
+    left = 0
+    right = len(num) - 1
 
-        left = 0
-        right = len(num) - 1
+    while left <= right:
+        if num[left] not in rotated_digits \
+                or num[right] != rotated_digits[num[left]]:
+            return False
+        left += 1
+        right -= 1
+    return True
 
-        while left <= right:
-            if num[left] not in rotated_digits \
-                    or num[right] != rotated_digits[num[left]]:
-                return False
-            left += 1
-            right -= 1
-        return True
+
 print("THE VALUE 111 is = ", isStrobogrammatichashmap("111"))
+
+# x = 3
+# nums = x % 2 * list('018') or ['']
+# print (nums)
+
+#20.valid parenthesis
+
+def isValid(s: str) -> bool:
+    if s == 0 or len(s) == 0:
+        return True
+
+    stack = []
+    for char in s:
+        if char == '(' or char == '{' or char == '[':
+            stack.append(char)
+        elif char == ")" and (len(stack) == 0 or stack[-1] != "("):
+            return False
+        elif char == "}" and (len(stack) == 0 or stack[-1] != "{"):
+            return False
+        elif char == "]" and (len(stack) == 0 or stack[-1] != "["):
+            return False
+        else:
+            stack.pop()
+
+    if len(stack) > 0:
+        return False
+    else:
+        return True
+
