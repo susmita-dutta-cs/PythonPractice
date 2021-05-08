@@ -112,11 +112,12 @@ def isStrobogrammatichashmap(num) -> bool:
 
 print("THE VALUE 111 is = ", isStrobogrammatichashmap("111"))
 
+
 # x = 3
 # nums = x % 2 * list('018') or ['']
 # print (nums)
 
-#20.valid parenthesis
+# 20.valid parenthesis
 
 def isValid(s: str) -> bool:
     if s == 0 or len(s) == 0:
