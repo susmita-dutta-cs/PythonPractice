@@ -173,7 +173,7 @@ array = [2, 5, 8, 9, 12, 19, 25, 27, 32, 60, 65, 1, 24, 124, 654]
 print(reverse_in_place(array))  # Call the function passing the list
 
 
-def transpose(A): # declare  a fuction
+def transposematrix(A): # declare  a fuction
     numrows, numcols = len(A), len(A[0]) # get the length of the rows and columns
     newgrid = []  # create another matrix wth the new dimensions because of flipping
     for z in range(numcols):
@@ -186,5 +186,5 @@ def transpose(A): # declare  a fuction
 
 
 matrix=[[1,2,3],[4,5,6],[7,8,9]]
-print(transpose(matrix))
+print(transposematrix(matrix))
 
