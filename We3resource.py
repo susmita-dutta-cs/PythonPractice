@@ -173,18 +173,67 @@ array = [2, 5, 8, 9, 12, 19, 25, 27, 32, 60, 65, 1, 24, 124, 654]
 print(reverse_in_place(array))  # Call the function passing the list
 
 
-def transposematrix(A): # declare  a fuction
-    numrows, numcols = len(A), len(A[0]) # get the length of the rows and columns
+def transposematrix(A):  # declare  a fuction
+    numrows, numcols = len(A), len(A[0])  # get the length of the rows and columns
     newgrid = []  # create another matrix wth the new dimensions because of flipping
-    for z in range(numcols):
-        newgrid.append([0] * numrows)
+    for z in range(numcols):  # z is the low index pointer new grid appended with the value 0
+        newgrid.append([0] * numrows)  # [[0,0,0],[0,0,0],[0,0,0]]
 
-    for r in range(numcols): # looping over the columns
+    for r in range(numcols):  # looping over the columns
         for c in range(numrows):
-            newgrid[r][c] = A[c][r] # assign the values on the new matrix by flipping indexes
-    return newgrid # return new matrix
+            newgrid[r][c] = A[c][r]  # assign the values on the new matrix by flipping indexes
+    return newgrid  # return new matrix
 
 
-matrix=[[1,2,3],[4,5,6],[7,8,9]]
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 print(transposematrix(matrix))
 
+
+def spiralOrder(matrix):
+    if not matrix:
+        return []
+
+    m, n = len(matrix), len(matrix[0])
+    res = []
+
+    i_beg = 0  # start from 0,0
+    i_end = m  # end row
+
+    j_beg = 0  # start column
+    j_end = n  # last column
+
+    while len(res) != m * n:
+
+        # moving to right
+        for j in range(j_beg, j_end):  # for ach element here columns are counted
+            res.append(matrix[i_beg][j])
+        i_beg += 1
+        if len(res) == m * n:
+            break
+
+        # down
+        for i in range(i_beg, i_end):  # here elements are counted in the form of rows
+            res.append(matrix[i][j_end - 1])
+        j_end -= 1
+        if len(res) == m * n:
+            break
+
+        # left
+        for j in range(j_end - 1, j_beg - 1, -1):
+            res.append(matrix[i_end - 1][j])
+        i_end -= 1
+        if len(res) == m * n:
+            break
+
+        # up
+        for i in range(i_end - 1, i_beg - 1, -1):
+            res.append(matrix[i][j_beg])
+        j_beg += 1
+        if len(res) == m * n:
+            break
+
+    return res
+
+
+matrixx = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+print(spiralOrder(matrixx))
