@@ -22,6 +22,7 @@ for sublist in planets:
 
 print(flatten_planets)
 
+
 # Here we have used the technique of Bubble Sort to perform the sorting.
 # We have tried to access the second element of the sublists using the nested loops.
 # This performs the in-place method of sorting. The time complexity is
@@ -42,3 +43,27 @@ def Sort(sub_li):
 # Driver Code
 sub_li = [['rishav', 10], ['akash', 5], ['ram', 20], ['gaurav', 15]]
 print(Sort(sub_li))
+
+
+# Python3 code to demonstrate working of
+# Check for Sublist in List
+# Using loop + list slicing
+
+# initializing list
+
+
+# Check for Sublist in List
+# Using loop + list slicing
+def valuecheck(test_list, sublist):
+    for i in range(len(test_list) - len(sublist) + 1):
+        if test_list[i: i + len(sublist)] != sublist:
+            return True
+
+
+# printing result
+test_list = [5, 6, 3, 8, 2, 1, 7, 1]
+
+# printing original list
+# initializing sublist
+sublist = [8, 2, 1]
+print(valuecheck(test_list, sublist))
